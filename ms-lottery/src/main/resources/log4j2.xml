@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF">
+		<properties>
+		<property name="LOG_HOME">logs/</property>
+		<property name="LOG_BAKUP">${LOG_HOME}/logs_bak</property>
+		<property name="LOG_FILE_NAME">ms-hr</property>
+		<property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
+	</properties>
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<RollingFile name="rollingFile" fileName="${LOG_HOME}/${LOG_FILE_NAME}.log"
+			append="true" filePattern="${LOG_BAKUP}/${LOG_FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+			<Policies>
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="50MB" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<DefaultRolloverStrategy max="10"/>
+		</RollingFile>
+	</appenders>
+	<loggers>
+		<root level="INFO">
+			<appender-ref ref="Console" />
+			<appender-ref ref="rollingFile" />
+		</root>
+		
+		<!-- --> <logger name="log4j.logger.noModule" level="fatal" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.org.mybatis.jpetstore" level="trace"
+			additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.opensymphony.xwork2" level="debug"
+			additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis" level="trace"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis.common.jdbc.SimpleDataSource"
+			level="debug" additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.com.ibatis.common.jdbc.ScriptRunner"
+			level="debug" additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger
+			name="log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate"
+			level="debug" additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.org.mybatis" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql" level="debug" additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.Connection" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.Statement" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.PreparedStatement" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.java.sql.ResultSet" level="debug"
+			additivity="true">
+			<appender-ref ref="Console" />
+		</logger>
+
+		<logger name="log4j.logger.org.thymeleaf" level="debug"
+			additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.org.thymeleaf.TemplateEngine.CONFIG"
+			level="trace" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.org.thymeleaf.TemplateEngine.TIMER"
+			level="trace" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger
+			name="log4j.logger.org.thymeleaf.TemplateEngine.cache.TEMPLATE_CACHE"
+			level="trace" additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+		<logger name="log4j.logger.net.sf.ehcache" level="trace"
+			additivity="false">
+			<appender-ref ref="Console" />
+		</logger>
+
+	</loggers>
+</configuration>
